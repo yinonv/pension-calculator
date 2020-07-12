@@ -1,0 +1,15 @@
+import I18n from "i18n-js";
+import * as Localization from 'expo-localization';
+
+import en from "./en";
+import he from "./he";
+
+I18n.locale = Localization.locale;
+
+I18n.fallbacks = true;
+I18n.translations = {
+  en,
+  he
+};
+
+export default I18n;

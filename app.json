@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "pensionCalculator",
-    "slug": "pensionCalculator",
+    "name": "Pension Calculator",
+    "slug": "Pension Calculator",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

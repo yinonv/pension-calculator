@@ -5,9 +5,11 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import calculatorScreen from '../screens/calculatorScreen';
+import helpScreen from '../screens/helpScreen';
+import { BottomTabParamList, calculatorParamList, helpParamList } from '../../types';
+
+import I18n from '../../locales/i18n';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -16,18 +18,18 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="main"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name={I18n.t('main.tabTitle')}
+        component={mainNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name={I18n.t('help.tabTitle')}
+        component={helpNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -44,30 +46,30 @@ function TabBarIcon(props: { name: string; color: string }) {
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const mainStack = createStackNavigator<calculatorParamList>();
 
-function TabOneNavigator() {
+function mainNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <mainStack.Navigator>
+      <mainStack.Screen
+        name="calculatorScreen"
+        component={calculatorScreen}
+        options={{ headerTitle: I18n.t('main.title') }}
       />
-    </TabOneStack.Navigator>
+    </mainStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const helpStack = createStackNavigator<helpParamList>();
 
-function TabTwoNavigator() {
+function helpNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <helpStack.Navigator>
+      <helpStack.Screen
+        name="helpScreen"
+        component={helpScreen}
+        options={{ headerTitle: I18n.t('help.title') }}
       />
-    </TabTwoStack.Navigator>
+    </helpStack.Navigator>
   );
 }

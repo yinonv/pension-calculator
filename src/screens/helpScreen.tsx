@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import I18n from '../../locales/i18n'
+import HelpInfo from '../components/HelpInfo';
 import { Text, View } from '../components/Themed';
+import * as Localization from 'expo-localization';
 
-export default function TabTwoScreen() {
+export default function helpScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>{I18n.t('help.subtitle')}</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />
+      <HelpInfo />
     </View>
   );
 }
@@ -17,8 +18,8 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: Localization.isRTL ? 'flex-end' : 'flex-start'
   },
   title: {
     fontSize: 20,
