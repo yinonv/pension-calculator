@@ -20,5 +20,6 @@ export default {
         contribution: "Contribution",
         employerContribution: "Employer Contribution",
         severance: "Severance"
-    }
+    },
+    currency: 'NIS',
 };

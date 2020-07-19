@@ -4,7 +4,6 @@ import { Text, View } from '../components/Themed';
 import I18n from '../../locales/i18n';
 import PensionInfo from '../components/PensionInfo';
 
-import * as Localization from 'expo-localization';
 
 export default function calculatorScreen() {
   return (
@@ -20,7 +19,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: Localization.isRTL ? 'flex-end' : 'flex-start'
+    alignItems: 'center'
   },
   title: {
     fontSize: 20,

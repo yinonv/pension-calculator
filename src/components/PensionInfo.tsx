@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import { StyleSheet, TextInput, Button, Alert} from 'react-native';
-import { Text, View } from './Themed';
+import { StyleSheet, Button, Alert} from 'react-native';
+import { View } from './Themed';
 import I18n from '../../locales/i18n';
-import * as Localization from 'expo-localization';
 import PensionLogic from '../logic/pension.logic';
-import Dimensions from '../constants/Layout'
+import Dimensions from '../constants/Layout';
+import InputField from './InputField';
 
 interface IPensionInfoProps {}
 
@@ -15,21 +15,6 @@ export default function PensionInfo(props: IPensionInfoProps) {
   const [managementFee, setManagementFee] = useState('');
   const [yieldValue, setYield] = useState('');
   const [years, setYears] = useState('');
-
-  const getLabel = (name: string) => <Text>{I18n.t(`main.${name}`)}</Text>
-
-  const getField = (name: string, onChange: any, value: string) => (
-    <View style={styles.inputContainer}>
-      {!Localization.isRTL && getLabel(name)}
-        <TextInput
-          style={styles.input}
-          keyboardType = 'numeric'
-          onChangeText={input => onChange(input)}
-          value={value}
-          />
-      {Localization.isRTL && getLabel(name)}
-    </View>
-  )
 
   const onButtonClick = () => {
     const {totalAmount, depositFeeTotal, managementFeeTotal} = new PensionLogic().calculatePension({
@@ -46,12 +31,42 @@ export default function PensionInfo(props: IPensionInfoProps) {
 
   return (
     <View style={styles.container}>
-        {getField('currentAmount', setCurrentAmount, currentAmount)}
-        {getField('deposit', setDeposit, deposit)}
-        {getField('depositFee', setDepositFee, depositFee)}
-        {getField('managementFee', setManagementFee, managementFee)}
-        {getField('yield', setYield, yieldValue)}
-        {getField('years', setYears, years)}
+      <InputField 
+        onChange={setCurrentAmount}
+        title={'main.currentAmount'}
+        value={currentAmount}
+        placeholder={'currency'}
+      />
+      <InputField 
+        onChange={setDeposit}
+        title={'main.deposit'}
+        value={deposit}
+        placeholder={'currency'}
+      />
+      <InputField 
+        onChange={setDepositFee}
+        title={'main.depositFee'}
+        value={depositFee}
+        placeholder={'%'}
+      />
+      <InputField 
+        onChange={setManagementFee}
+        title={'main.managementFee'}
+        value={managementFee}
+        placeholder={'%'}
+      />
+      <InputField 
+        onChange={setYield}
+        title={'main.yield'}
+        value={yieldValue}
+        placeholder={'%'}
+      />
+      <InputField 
+        onChange={setYears}
+        title={'main.years'}
+        value={years}
+        placeholder={''}
+      />
       <View style={styles.button}>
         <Button
         title={I18n.t('main.button')}
@@ -66,25 +81,7 @@ const {width} = Dimensions.window;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start',
-  },
-  inputContainer: {
     alignItems: 'center',
-    flexDirection: 'row',
-    marginBottom: 15,
-    marginRight: 15,
-    marginLeft: 15,
-    justifyContent: "space-between",
-    width: width - 30
-  },
-  input: {
-    height: 40, 
-    borderColor: 'gray', 
-    borderWidth: 1,
-    textAlign: 'center',
-    marginRight: 15,
-    marginLeft: 15,
-    width: 150
   },
   button: {
     width,
