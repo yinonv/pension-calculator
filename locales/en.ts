@@ -22,4 +22,6 @@ export default {
         severance: "Severance"
     },
     currency: 'NIS',
+    language: 'EN'
+
 };

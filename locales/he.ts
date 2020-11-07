@@ -21,5 +21,6 @@ export default {
     employerContribution: "אחוז הפקדה ממעביד",
     severance: "אחוז רכיב פיצויים",
   },
-  currency: '₪'
+  currency: '₪',
+  language: 'HE'
 };
